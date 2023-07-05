@@ -320,7 +320,7 @@ StandardError=file:{{.LogDirectory}}/{{.Name}}.err
 {{if gt .LimitNOFILE -1 }}LimitNOFILE={{.LimitNOFILE}}{{end}}
 {{if .Restart}}Restart={{.Restart}}{{end}}
 {{if .SuccessExitStatus}}SuccessExitStatus={{.SuccessExitStatus}}{{end}}
-RestartSec=120
+RestartSec=5
 EnvironmentFile=-/etc/sysconfig/{{.Name}}
 
 {{range $k, $v := .EnvVars -}}
@@ -328,5 +328,6 @@ Environment={{$k}}={{$v}}
 {{end -}}
 
 [Install]
-WantedBy=multi-user.target
+{{if .UserName}}WantedBy=default.target{{else}}WantedBy=multi-user.target{{end}}
+
 `
