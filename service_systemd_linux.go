@@ -328,6 +328,6 @@ Environment={{$k}}={{$v}}
 {{end -}}
 
 [Install]
-{{if .UserName}}WantedBy=default.target{{else}}WantedBy=multi-user.target{{end}}
+WantedBy=default.target
 
 `
